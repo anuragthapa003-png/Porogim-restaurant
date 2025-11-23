@@ -1,130 +1,476 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Poro Gim Restaurant</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savor & Spice | Gourmet Dining</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            dark: '#1a1a1a',
+                            gray: '#2d2d2d',
+                            light: '#f8f8f8'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #f5f5f5;
-            color: #222;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        header {
-            background: #111;
-            color: white;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a; 
         }
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            letter-spacing: 1px;
+        ::-webkit-scrollbar-thumb {
+            background: #444; 
+            border-radius: 5px;
         }
-        nav a {
-            color: white;
-            margin-left: 20px;
-            text-decoration: none;
-            font-size: 16px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37; 
         }
-        .hero {
-            height: 70vh;
-            background: url('https://images.unsplash.com/photo-1553621042-f6e147245754') center/cover no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
-        .hero h2 {
-            font-size: 48px;
-            backdrop-filter: brightness(0.4);
-            padding: 20px;
-            border-radius: 12px;
-        }
-        .section {
-            padding: 60px 40px;
-        }
-        .section h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .menu-item {
-            background: white;
-            border-radius: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            padding: 20px;
-        }
-        .menu-item h4 {
-            margin-top: 0;
-            font-size: 20px;
-        }
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+
+        .menu-card:hover .menu-img {
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body>
-    <header>
-        <img src="logo.png" alt="Poro Gim Restaurant Logo" style="height:60px; margin-right:20px;">
-        <h1>Poro Gim Restaurant</h1>
-        <nav>
-            <a href="#menu">Menu</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header><section class="hero">
-    <h2>Classy Chinese & Nepali Cuisine</h2>
-</section>
+<body class="bg-brand-light text-brand-dark font-sans antialiased">
 
-<section class="section" id="menu">
-    <h3>Our Popular Dishes</h3>
-    <div class="menu-grid">
-        <div class="menu-item">
-            <h4>Momo (Nepali)</h4>
-            <p>Soft dumplings with authentic Nepali spices.</p>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-brand-dark/90 backdrop-blur-md border-b border-brand-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="chef-hat" class="h-8 w-8 text-brand-gold"></i>
+                    <span class="font-serif text-2xl font-bold text-white tracking-wider">Savor<span class="text-brand-gold">&</span>Spice</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-white hover:text-brand-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="#about" class="text-gray-300 hover:text-brand-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#menu" class="text-gray-300 hover:text-brand-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Menu</a>
+                        <a href="#gallery" class="text-gray-300 hover:text-brand-gold px-3 py-2 rounded-md text-sm font-medium transition-colors">Gallery</a>
+                        <a href="#contact" class="bg-brand-gold text-brand-dark hover:bg-white hover:text-brand-gold px-5 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105">Book a Table</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="menu-item">
-            <h4>Chicken Chowmein</h4>
-            <p>Classic Chinese-style stir-fried noodles.</p>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Home</a>
+                <a href="#about" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">About</a>
+                <a href="#menu" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-800">Menu</a>
+                <a href="#contact" class="text-brand-gold block px-3 py-2 rounded-md text-base font-bold hover:bg-gray-800">Book Now</a>
+            </div>
         </div>
-        <div class="menu-item">
-            <h4>Fried Rice</h4>
-            <p>Wok-tossed rice with rich flavors and veggies.</p>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center text-center px-4 relative">
+        <div class="max-w-4xl mx-auto text-white space-y-6 animate-fade-in-up">
+            <p class="text-brand-gold font-serif text-xl italic mb-2 tracking-widest uppercase">Experience the Taste</p>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight mb-4">
+                Where Every Flavor <br> Tells a Story
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-8 font-light">
+                Fresh ingredients, culinary mastery, and an ambiance that feels like home. 
+                Join us for an unforgettable dining experience.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#menu" class="bg-brand-gold text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-brand-gold/50">
+                    View Our Menu
+                </a>
+                <a href="#contact" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-dark transition-all transform hover:-translate-y-1">
+                    Reservation
+                </a>
+            </div>
         </div>
-    </div>
-</section>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+            <i data-lucide="chevron-down" class="h-10 w-10"></i>
+        </div>
+    </section>
 
-<section class="section" id="about">
-    <h3>About Us</h3>
-    <p>Poro Gim Restaurant brings you a classy dining experience with the perfect blend of Chinese and Nepali flavors. We believe in taste, tradition, and a warm ambience.</p>
-</section>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="w-full md:w-1/2 relative group">
+                    <div class="absolute -inset-4 bg-brand-gold/20 rounded-lg transform rotate-3 transition-transform group-hover:rotate-6"></div>
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=2070&auto=format&fit=crop" alt="Chef plating food" class="relative rounded-lg shadow-xl w-full object-cover h-[500px]">
+                </div>
+                <div class="w-full md:w-1/2 space-y-6">
+                    <h2 class="text-brand-gold font-bold tracking-widest uppercase text-sm">Our Story</h2>
+                    <h3 class="text-4xl md:text-5xl font-serif font-bold text-brand-dark">Tradition Meets Modernity</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Founded in 2010, Savor & Spice began with a simple mission: to bring authentic flavors to the modern table. 
+                        Our executive chef, Julian Ramirez, combines locally sourced ingredients with techniques passed down through generations.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Whether you are here for a quick business lunch or a romantic dinner, we promise an atmosphere of warmth and dishes crafted with passion.
+                    </p>
+                    <div class="pt-4 flex items-center gap-8">
+                        <div>
+                            <h4 class="text-4xl font-serif font-bold text-brand-gold">15+</h4>
+                            <p class="text-sm text-gray-500 uppercase tracking-wide">Years Experience</p>
+                        </div>
+                        <div>
+                            <h4 class="text-4xl font-serif font-bold text-brand-gold">50+</h4>
+                            <p class="text-sm text-gray-500 uppercase tracking-wide">Awards Won</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="section" id="contact">
-    <h3>Contact Us</h3>
-    <p>📍 Toribari, Salugara, behind Bengal Safari, Siliguri-734008<br>
-       📞 +91-7602510534<br>
-       📞 +91-7479017171<br>
-       ⏰ Open: 10 AM – 10 PM
-    </p>
-</section>
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Discover</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-2">Our Signature Menu</h2>
+                <div class="w-24 h-1 bg-brand-gold mx-auto mt-6"></div>
+            </div>
 
-<footer>
-    © 2025 Poro Gim Restaurant. All Rights Reserved.
-</footer>
+            <!-- Menu Categories -->
+            <div class="flex justify-center gap-4 mb-12 flex-wrap">
+                <button class="menu-filter-btn active bg-brand-gold text-brand-dark px-6 py-2 rounded-full font-bold transition-all" data-filter="all">All</button>
+                <button class="menu-filter-btn bg-transparent border border-gray-600 hover:border-brand-gold hover:text-brand-gold px-6 py-2 rounded-full font-medium transition-all" data-filter="starters">Starters</button>
+                <button class="menu-filter-btn bg-transparent border border-gray-600 hover:border-brand-gold hover:text-brand-gold px-6 py-2 rounded-full font-medium transition-all" data-filter="mains">Mains</button>
+                <button class="menu-filter-btn bg-transparent border border-gray-600 hover:border-brand-gold hover:text-brand-gold px-6 py-2 rounded-full font-medium transition-all" data-filter="desserts">Desserts</button>
+            </div>
 
+            <!-- Menu Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
+                
+                <!-- Item 1 -->
+                <div class="menu-item starters bg-brand-gray rounded-xl overflow-hidden shadow-lg group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=2070&auto=format&fit=crop" alt="Food" class="menu-img w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-brand-gold text-brand-dark font-bold px-3 py-1 rounded-full">$12</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-2xl font-bold mb-2">Crispy Calamari</h3>
+                        <p class="text-gray-400 mb-4">Served with spicy marinara sauce and lemon wedges.</p>
+                        <button class="text-brand-gold uppercase text-xs font-bold tracking-widest border-b border-brand-gold pb-1 hover:text-white transition-colors">Order Now</button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-item mains bg-brand-gray rounded-xl overflow-hidden shadow-lg group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop" alt="Food" class="menu-img w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-brand-gold text-brand-dark font-bold px-3 py-1 rounded-full">$34</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-2xl font-bold mb-2">Ribeye Steak</h3>
+                        <p class="text-gray-400 mb-4">Grilled to perfection, served with garlic mashed potatoes and asparagus.</p>
+                        <button class="text-brand-gold uppercase text-xs font-bold tracking-widest border-b border-brand-gold pb-1 hover:text-white transition-colors">Order Now</button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-item mains bg-brand-gray rounded-xl overflow-hidden shadow-lg group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?q=80&w=2070&auto=format&fit=crop" alt="Food" class="menu-img w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-brand-gold text-brand-dark font-bold px-3 py-1 rounded-full">$24</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-2xl font-bold mb-2">Seafood Pasta</h3>
+                        <p class="text-gray-400 mb-4">Fresh fettuccine with shrimp, mussels, and scallops in a white wine sauce.</p>
+                        <button class="text-brand-gold uppercase text-xs font-bold tracking-widest border-b border-brand-gold pb-1 hover:text-white transition-colors">Order Now</button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-item starters bg-brand-gray rounded-xl overflow-hidden shadow-lg group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1572695157363-bc3195019335?q=80&w=1974&auto=format&fit=crop" alt="Food" class="menu-img w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-brand-gold text-brand-dark font-bold px-3 py-1 rounded-full">$10</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-2xl font-bold mb-2">Bruschetta</h3>
+                        <p class="text-gray-400 mb-4">Grilled bread topped with diced tomatoes, fresh basil, garlic, and olive oil.</p>
+                        <button class="text-brand-gold uppercase text-xs font-bold tracking-widest border-b border-brand-gold pb-1 hover:text-white transition-colors">Order Now</button>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-item desserts bg-brand-gray rounded-xl overflow-hidden shadow-lg group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=1974&auto=format&fit=crop" alt="Food" class="menu-img w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-brand-gold text-brand-dark font-bold px-3 py-1 rounded-full">$9</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-2xl font-bold mb-2">Classic Tiramisu</h3>
+                        <p class="text-gray-400 mb-4">Layers of coffee-soaked sponge cake and mascarpone cheese.</p>
+                        <button class="text-brand-gold uppercase text-xs font-bold tracking-widest border-b border-brand-gold pb-1 hover:text-white transition-colors">Order Now</button>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-item desserts bg-brand-gray rounded-xl overflow-hidden shadow-lg group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=2070&auto=format&fit=crop" alt="Food" class="menu-img w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-brand-gold text-brand-dark font-bold px-3 py-1 rounded-full">$11</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-2xl font-bold mb-2">Berry Cheesecake</h3>
+                        <p class="text-gray-400 mb-4">Creamy New York style cheesecake topped with fresh berry compote.</p>
+                        <button class="text-brand-gold uppercase text-xs font-bold tracking-widest border-b border-brand-gold pb-1 hover:text-white transition-colors">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-dark px-8 py-3 rounded-full font-bold transition-all">Download Full Menu (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation & Contact Section -->
+    <section id="contact" class="py-20 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+                
+                <!-- Contact Info -->
+                <div class="bg-brand-dark text-white p-12 lg:w-1/3 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-serif text-3xl font-bold mb-8">Contact Us</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="map-pin" class="text-brand-gold w-6 h-6 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg">Location</h4>
+                                    <p class="text-gray-400">123 Culinary Avenue,<br>Food District, NY 10012</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="phone" class="text-brand-gold w-6 h-6 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg">Phone</h4>
+                                    <p class="text-gray-400">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="mail" class="text-brand-gold w-6 h-6 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg">Email</h4>
+                                    <p class="text-gray-400">reservations@savorandspice.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="clock" class="text-brand-gold w-6 h-6 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg">Hours</h4>
+                                    <p class="text-gray-400">Mon-Sun: 11:00 AM - 11:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <h4 class="font-bold text-lg mb-4">Follow Us</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-brand-gold hover:text-brand-dark transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-brand-gold hover:text-brand-dark transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-brand-gold hover:text-brand-dark transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reservation Form -->
+                <div class="p-12 lg:w-2/3 relative">
+                    <div class="text-center mb-10">
+                        <span class="text-brand-gold font-bold uppercase text-sm tracking-widest">Reservations</span>
+                        <h2 class="text-3xl font-serif font-bold text-gray-800">Book A Table</h2>
+                    </div>
+
+                    <form id="reservationForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Phone</label>
+                                <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors" placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Date</label>
+                                <input type="date" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Time</label>
+                                <input type="time" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Guests</label>
+                                <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors">
+                                    <option>2 People</option>
+                                    <option>3 People</option>
+                                    <option>4 People</option>
+                                    <option>5+ People</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Special Requests</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors" placeholder="Allergies, special occasion, etc."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-lg hover:bg-brand-gold hover:text-brand-dark transition-all transform hover:-translate-y-1 shadow-lg">
+                            Confirm Reservation
+                        </button>
+                    </form>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="successMessage" class="hidden absolute inset-0 bg-white flex-col items-center justify-center text-center p-12">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="check" class="w-10 h-10 text-green-600"></i>
+                        </div>
+                        <h3 class="text-3xl font-serif font-bold text-gray-800 mb-2">Reservation Received!</h3>
+                        <p class="text-gray-600 mb-8">Thank you for choosing Savor & Spice. We will send a confirmation text shortly.</p>
+                        <button id="newReservationBtn" class="text-brand-gold font-bold underline hover:text-brand-dark">Make another reservation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white border-t border-gray-800 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-serif text-xl font-bold mb-2">Savor<span class="text-brand-gold">&</span>Spice</p>
+            <p class="text-gray-500 text-sm">&copy; 2024 Savor & Spice Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Transition on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.replace('bg-brand-dark/90', 'bg-brand-dark');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.replace('bg-brand-dark', 'bg-brand-dark/90');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Menu Filtering
+        const filterBtns = document.querySelectorAll('.menu-filter-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-gold', 'text-brand-dark');
+                    b.classList.add('bg-transparent', 'text-white');
+                });
+                // Add active class to clicked button
+                btn.classList.remove('bg-transparent', 'text-white');
+                btn.classList.add('bg-brand-gold', 'text-brand-dark');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                menuItems.forEach(item => {
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                        item.classList.remove('hidden');
+                        setTimeout(() => item.classList.remove('opacity-0', 'scale-95'), 50);
+                    } else {
+                        item.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => item.classList.add('hidden'), 300);
+                    }
+                });
+            });
+        });
+
+        // Reservation Form Handling
+        const form = document.getElementById('reservationForm');
+        const successMsg = document.getElementById('successMessage');
+        const newResBtn = document.getElementById('newReservationBtn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simulate API call
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                successMsg.classList.remove('hidden');
+                successMsg.classList.add('flex');
+                btn.innerText = originalText;
+                btn.disabled = false;
+                form.reset();
+            }, 1500);
+        });
+
+        newResBtn.addEventListener('click', () => {
+            successMsg.classList.add('hidden');
+            successMsg.classList.remove('flex');
+        });
+    </script>
 </body>
 </html>
-  
